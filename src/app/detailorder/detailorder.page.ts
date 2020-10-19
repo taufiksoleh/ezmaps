@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
 import { ServiceService } from './../servive/service.service';
 import { Platform,NavController,LoadingController,ToastController} from '@ionic/angular';
 
@@ -23,11 +23,16 @@ export class DetailorderPage {
   alamat;
   status;
   photo;
+  latitude;
+  longitude;
+  phone;
+
   constructor(
     private router: Router,
     public route: ActivatedRoute,
     private serviceService : ServiceService,
     public loadingController : LoadingController,
+    public nav : NavController,
   ) {}
   ngOnInit() {
     this.order_id= this.router.getCurrentNavigation().extras.state.order_id;
@@ -55,23 +60,44 @@ export class DetailorderPage {
     };
     this.serviceService.getOrder(this.ParamQuery, 'order_detail').subscribe(
       data => {
+        console.log(data);
+
           this.dataform = data;
           if(this.dataform.status !== 'success') {
             loading.dismiss();
           }else{
             loading.dismiss();
             this.set = this.dataform.data;
+
             this.nama = this.set.nama;
             this.service_type = this.set.service_type;
             this.alamat = this.set.alamat;
             this.date_order = this.set.date_order;
             this.status = this.set.status;
             this.photo= "../../assets/images/"+this.set.photo;
+            this.latitude = this.set.latitude;
+            this.longitude = this.set.longitude;
+            this.phone = this.set.phone;
           }
       },
       error => {
           loading.dismiss();
         }
     );
+  }
+
+  goMap(lat, lon){
+    console.log(lat + lon);
+    let navigationExtras : NavigationExtras = {
+      // state : {
+      //   latitude:lat,
+      //   longitude:lon
+      // },
+      queryParams: {
+        latitude:lat,
+        longitude:lon
+      }
+    }
+    this.nav.navigateForward(['marker'], navigationExtras);
   }
 }

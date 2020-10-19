@@ -16,14 +16,18 @@
             <p class="title margin-minus margin-remove">{{nama}}</p>
         </ion-col>
         <ion-col size="2">
-            <div class="mail-icon">
-                <ion-icon class="icon-set" name="mail-outline"></ion-icon>
-            </div>
+            <a href="https://wa.me/{{phone}}">
+                <div class="mail-icon">
+                    <ion-icon class="icon-set" name="mail-outline"></ion-icon>
+                </div>
+            </a>
         </ion-col>
         <ion-col size="2">
-            <div class="call-icon">
-                <ion-icon class="icon-set" name="call-outline"></ion-icon>
-            </div>
+            <a href="tel:{{phone}}">
+                <div class="call-icon">
+                    <ion-icon class="icon-set" name="call-outline"></ion-icon>
+                </div>
+            </a>
         </ion-col>
     </ion-row>
     <ion-row>
@@ -47,7 +51,7 @@
             <p class="title-small margin-remove">Alamat</p>
             <p class="title margin-minus margin-remove">{{alamat}}</p>
             <p>
-                <a class="btn-manual">Lihat Peta</a>
+                <a class="btn-manual" (click)="goMap(latitude,longitude)">Lihat Peta</a>
             </p>
         </ion-col>
     </ion-row>

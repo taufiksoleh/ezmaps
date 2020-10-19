@@ -16,8 +16,12 @@ export class ServiceService {
   authenticationState = new ReplaySubject();
   token:any;
 
-  //API_URL = 'http://localhost:8080/api/'; 
-  API_URL = 'http://127.0.0.1:8000/api/'; 
+  // API_URL = 'http://localhost:8080/api/'; 
+  //API_URL = 'http://127.0.0.1:8000/api/'; 
+  API_URL = 'https://0874d865d019.ngrok.io/api/'; 
+  // API_URL = 'http://192.168.1.9:8000/api/'; 
+  
+  
   
   TOKEN_KEY = 'PGaOejLnNc7m06TQBLZO9D6NJHygKsLWEUW0k1UJ';
 

@@ -73,6 +73,10 @@ const routes: Routes = [
     path: 'detailorder', 
     loadChildren: () => import('./detailorder/detailorder.module').then( m => m.DetailorderPageModule)
   },
+  { 
+    path: 'marker', 
+    loadChildren: () => import('./map/marker/marker.module').then( m => m.MarkerPageModule)
+  }
 ];
 
 @NgModule({
