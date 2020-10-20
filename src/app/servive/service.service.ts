@@ -18,8 +18,8 @@ export class ServiceService {
 
   // API_URL = 'http://localhost:8080/api/'; 
   //API_URL = 'http://127.0.0.1:8000/api/'; 
-  API_URL = 'https://0874d865d019.ngrok.io/api/'; 
-  // API_URL = 'http://192.168.1.9:8000/api/'; 
+  API_URL = 'https://fd6274ed2a2e.ngrok.io/api/'; 
+  // API_URL = 'http://192.168.1.12:8000/api/'; 
   
   
   
@@ -82,6 +82,7 @@ export class ServiceService {
   loginApi(credentials, type){  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     });
     return this.http.post(this.API_URL + type, credentials, { headers: headers }).pipe(
       tap(Data => {
@@ -207,9 +208,9 @@ export class ServiceService {
 
     this.http.post(this.API_URL + "auth/logout", postData, {headers: headers})
       .subscribe(data => {
-        
+        console.log(JSON.stringify(data));
        }, error => {
-        console.log(error);
+        console.log(JSON.stringify(error));
       });
 
       this.authenticationState.next(false);

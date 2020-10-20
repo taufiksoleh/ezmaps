@@ -71,6 +71,7 @@ export class VerificationPage {
 
     this.serviceService.checkNumber(this.extras, 'auth/login').subscribe(
       data => {
+        console.log(JSON.stringify(data));
         this.dataLogin=data;
         if(this.dataLogin.status !== 'success') {
           let message='Ada kendala dalam pengiriman OTP ulang, harap coba kembali dalam beberapa menit!';
@@ -85,11 +86,13 @@ export class VerificationPage {
         
       },
       error => {
+        console.log(JSON.stringify(error));
         if(error.status == 422) {
           let message='No Handphone Belum Terdafar';
           console.log(message)
           this.presentToast(message);
         }else{
+          console.log(JSON.stringify(error));
           let message='Tidak dapat memproses permintaan anda';
           console.log(message)
           this.presentToast(message);
@@ -105,9 +108,9 @@ export class VerificationPage {
     const loading = await this.loadingController.create({
       message : 'Please wait...'
     });
-    const otpCode = this.FormOTP.value.first + this.FormOTP.value.second + this.FormOTP.value.third + this.FormOTP.value.fourth;
+    const otpCode = `${this.FormOTP.value.first}${this.FormOTP.value.second}${this.FormOTP.value.third}${this.FormOTP.value.fourth}`;
     let item = {
-      otp : otpCode,
+      otp : otpCode.trim(),
       phone : this.phoneParam
     }
 
@@ -115,6 +118,7 @@ export class VerificationPage {
 
     this.serviceService.confirmationOtp(item, 'auth/otp-confirmation').subscribe(
       data => {
+        console.log(JSON.stringify(data));
         this.dataOtp=data;
         if(this.dataOtp.status !== 'success') {
           let message = 'Kode Otp yang Anda Masukkan Salah';
@@ -126,6 +130,7 @@ export class VerificationPage {
         }
       },
       error => {
+        console.log(JSON.stringify(error));
         if(error.status == 422) {
           let message='No Handphone Belum Terdafar';
           console.log(message)

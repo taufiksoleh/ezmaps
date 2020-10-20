@@ -55,6 +55,7 @@ export class FormProfilePage {
       await loading.present();
       this.serviceService.editProfile(this.FormEdit.value, 'edit_profile').subscribe(
         data => {
+          console.log(JSON.stringify(data));
             this.dataform = data;
             if(this.dataform.status !== 'success') {
                 let message='Tidak dapat memproses permintaan anda';
@@ -67,6 +68,7 @@ export class FormProfilePage {
               }
         },
         error => {
+          console.log(JSON.stringify(error));
               let message='Tidak dapat memproses permintaan anda';
               console.log(message)
               this.presentToast(message);

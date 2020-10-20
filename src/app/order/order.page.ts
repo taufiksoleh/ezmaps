@@ -50,6 +50,7 @@ export class OrderPage {
     };
     this.serviceService.getOrder(this.ParamQuery, 'order_pending').subscribe(
       data => {
+        console.log(JSON.stringify(data));
           this.dataform = data;
           if(this.dataform.status !== 'success') {
               loading.dismiss();

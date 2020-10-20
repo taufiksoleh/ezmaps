@@ -43,6 +43,7 @@ export class RegisterPage {
       this.FormRegister.value, 'auth/register'
     ).subscribe(
       data => {
+        console.log(JSON.stringify(data));
         this.dataRegister=data;
         if(this.dataRegister.status !== 'success') {
           let message = 'Phone Number atau Email sudah pernah terdaftarkan';
@@ -59,6 +60,7 @@ export class RegisterPage {
           console.log(message)
           this.presentToast(message);
         }else{
+          console.log(JSON.stringify(error));
           let message='Tidak dapat memproses permintaan anda';
           console.log(message)
           this.presentToast(message);

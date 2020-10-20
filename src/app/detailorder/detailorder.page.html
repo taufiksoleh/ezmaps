@@ -13,7 +13,8 @@
         </ion-col>
         <ion-col size="6">
             <p class="title-small margin-remove">Mitra</p>
-            <p class="title margin-minus margin-remove">{{nama}}</p>
+            <p class="title margin-minus margin-remove" *ngIf="nama != null">{{nama}}</p>
+            <p class="title margin-minus margin-remove" *ngIf="nama == null">Sedang mencari partner</p>
         </ion-col>
         <ion-col size="2">
             <a href="https://wa.me/{{phone}}">

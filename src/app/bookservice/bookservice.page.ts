@@ -117,12 +117,14 @@ export class BookservicePage {
     await loading.present();
     this.serviceService.getLayanan(this.FormOrder.value, 'layanan_service').subscribe(
       data => {
+        console.log(JSON.stringify(data));
           loading.dismiss();
           this.datalayanan = data;
           this.setlayanan = this.datalayanan.data;
           console.log(this.setlayanan);
       },
       error => {
+        console.log(JSON.stringify(error));
             let message='Tidak dapat memproses permintaan anda';
             console.log(message)
             this.presentToast(message);
@@ -139,6 +141,7 @@ export class BookservicePage {
     await loading.present();
     this.serviceService.SaveBookService(this.FormOrder.value, 'save_bookservice').subscribe(
       data => {
+        console.log(JSON.stringify(data));
           this.dataform = data;
           if(this.dataform.status !== 'success') {
               let message='Tidak dapat memproses permintaan anda';
@@ -152,6 +155,8 @@ export class BookservicePage {
             }
       },
       error => {
+        console.log(JSON.stringify(error));
+        
             let message='Tidak dapat memproses permintaan anda';
             console.log(message)
             this.presentToast(message);

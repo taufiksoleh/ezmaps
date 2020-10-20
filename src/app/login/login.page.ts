@@ -45,6 +45,7 @@ export class LoginPage {
 
     this.serviceService.checkNumber(this.FormLogin.value, 'auth/login').subscribe(
       data => {
+        console.log(JSON.stringify(data));
         this.dataLogin=data;
         if(this.dataLogin.status !== 'success') {
           let message='Nama pengguna dan kata sandi yang Anda masukkan tidak cocok. Silahkan periksa dan coba lagi.';
@@ -59,6 +60,7 @@ export class LoginPage {
         
       },
       error => {
+        console.log(JSON.stringify(error));
         if(error.status == 422) {
           let message='No Handphone Belum Terdafar';
           console.log(message)
